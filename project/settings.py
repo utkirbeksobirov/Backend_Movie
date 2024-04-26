@@ -144,21 +144,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-# ]
-# MEDIAFILES_DIRS = [
-#     os.path.join(BASE_DIR, "media"),
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, "media"),
+]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # STATIC_URL = "/static/"
-STATICFILES_DIR = os.path.join(BASE_DIR, "static")
+# STATICFILES_DIR = os.path.join(BASE_DIR, "static")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "/media/"
 
 
 # AWS_LOCATION_STATIC = 'static'
