@@ -23,6 +23,7 @@ WEBSITE_URL = os.environ.get('WEBSITE_URL')
 
 
 # Application definition
+#1
 
 INSTALLED_APPS = [
     'django.contrib.admin',
