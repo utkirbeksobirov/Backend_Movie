@@ -149,14 +149,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
-STATICFILES_DIR = os.path.join(BASE_DIR, "staticfiles")
+#STATICFILES_DIR = os.path.join(BASE_DIR, "staticfiles")
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-# MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
 
-# AWS_LOCATION_STATIC = 'static'
-# AWS_LOCATION_MEDIA = 'media'
+AWS_LOCATION_STATIC = 'static'
+AWS_LOCATION_MEDIA = 'media'
 
 
 # MEDIAFILES_DIRS = [
