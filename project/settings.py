@@ -23,6 +23,7 @@ WEBSITE_URL = os.environ.get('WEBSITE_URL')
 
 
 # Application definition
+#1
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -144,18 +145,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
-# STATICFILES_DIR = os.path.join(BASE_DIR, "static")
+STATICFILES_DIR = os.path.join(BASE_DIR, "staticfiles")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "/media/"
 
 
-AWS_LOCATION_STATIC = 'static'
-AWS_LOCATION_MEDIA = 'media'
+# AWS_LOCATION_STATIC = 'static'
+# AWS_LOCATION_MEDIA = 'media'
 
 
 # MEDIAFILES_DIRS = [
