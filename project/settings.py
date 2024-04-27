@@ -157,12 +157,10 @@ MEDIA_URL = "/media/"
 AWS_LOCATION_STATIC = 'static'
 AWS_LOCATION_MEDIA = 'media'
 
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, "static"),
-]
-MEDIAFILES_DIRS = [
-    os.path.join(BASE_DIR, "media"),
-]
+
+# MEDIAFILES_DIRS = [
+#     os.path.join(BASE_DIR, "media"),
+# ]
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
