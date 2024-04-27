@@ -94,17 +94,17 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default':{
-#         'ENGINE':'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.getenv("DATABASE_NAME"), 
-#         'USER': os.getenv("DATABASE_USER"),
-#         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
-#         'HOST': os.getenv("DATABASE_HOST"),
-#         'PORT': os.getenv("DATABASE_PORT"),
-#         'sslmode': os.getenv("DATABASE_SSL"),
-#    }
-# }
+DATABASES = {
+    'default':{
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("DATABASE_NAME"), 
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT"),
+        'sslmode': os.getenv("DATABASE_SSL"),
+   }
+}
 
 
 
@@ -191,7 +191,6 @@ DEFAULT_FILE_STORAGE = DEFAULT_FILE_STORAGE
 
 
 REST_FRAMEWORK = {
-    # ... other DRF settings
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
