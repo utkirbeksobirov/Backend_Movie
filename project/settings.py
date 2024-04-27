@@ -3,6 +3,8 @@ from pathlib import Path
 from datetime import timedelta
 import os
 from dotenv import load_dotenv
+import dj_database_url
+import sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -93,17 +95,21 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES={
-    'default':{
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':os.getenv("DATABASE_NAME"),
-        'USER': os.getenv("DATABASE_USER"),
-        'PASSWORD':os.getenv("DATABASE_PASSWORD"),
-        'HOST': os.getenv("DATABASE_HOST"),
-        'PORT': os.getenv("DATABASE_PORT"),
-        'sslmode' : os.getenv("DATABASE_sslmode"),
-   }
-}
+
+if DEBUG is True:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
+elif len(sys.argv) > 0 and sys.argv[1] != "collectstatic":
+    if os.getenv("DATABASE_URL", None) is None:
+        raise Exception("DATABASE_URL environment variable not defined")
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
+
 
 
 
