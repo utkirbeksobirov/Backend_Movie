@@ -213,8 +213,8 @@ SIMPLE_JWT = {
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8000',
     'http://localhost:5173',
-    'https://frontend-iota-sepia.vercel.app',
-    'https://walrus-app-8p5bd.ondigitalocean.app',
+    'https://movie-frontend-vite.vercel.app',
+    'https://movie-backend-4l4oj.ondigitalocean.app',
     
 ]
 
@@ -222,16 +222,16 @@ CORS_ORIGIN_WHITELIST = [
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:5173',
-    'https://frontend-iota-sepia.vercel.app',
-    'https://walrus-app-8p5bd.ondigitalocean.app',
+    'https://movie-frontend-vite.vercel.app',
+    'https://movie-backend-4l4oj.ondigitalocean.app',
     
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:5173',
-    'https://frontend-iota-sepia.vercel.app',
-    'https://walrus-app-8p5bd.ondigitalocean.app',
+    'https://movie-frontend-vite.vercel.app',
+    'https://movie-backend-4l4oj.ondigitalocean.app',
     
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
