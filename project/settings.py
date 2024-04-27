@@ -229,24 +229,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 s3 = boto3.client(
     "s3",
-    aws_access_key_id=AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-    region_name=AWS_S3_REGION_NAME,
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+    endpoint_url='https://movieitebucket.fra1.digitaloceanspaces.com'
 )
 
-# Sizning fayl o'rnatingiz va URLsini generatsiya qiling
-def generate_presigned_url(bucket_name, object_name):
-    """Amazon S3 da fayl uchun imzolangan URL generatsiya qilish"""
-    url = s3.generate_presigned_url(
-        ClientMethod='get_object',
-        Params={'Bucket': bucket_name, 'Key': object_name},
-        ExpiresIn=3600,  # Fayl URL ning amal qilish muddati (sekundlar)
-    )
-    return url
+# Ma'lumotlar bazasiga mahsulot rasm fayllarini saqlash uchun funksiya
+def save_product_image(file_name, file_content):
+    """Ma'lumotlar bazasiga mahsulot rasm faylini saqlash"""
+    s3.put_object(Bucket='movieitebucket', Key=file_name, Body=file_content)
 
-# Mahsulotlar obyektining fayl yo'lining va Amazon S3 da yuklanadigan URL ni generatsiya qilish
-def get_product_image_url(product_id):
-    """Mahsulotning rasm fayli uchun Amazon S3 da imzolangan URL generatsiya qilish"""
-    object_name = f"photos/products/{product_id}.jpg"  # Fayl yo'lining
-    url = generate_presigned_url(AWS_STORAGE_BUCKET_NAME, object_name)  # URL ni generatsiya qilish
-    return url
+# Mahsulotlar rasm faylini olish uchun funksiya
+def get_product_image_url(file_name):
+    """Mahsulotlar rasm faylini olish"""
+    return f"https://movieitebucket.fra1.digitaloceanspaces.com/{file_name}"
