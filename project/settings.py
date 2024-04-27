@@ -182,14 +182,16 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_QUERYSTRING_EXPIRE = os.getenv("AWS_QUERYSTRING_EXPIRE")
 
 
-MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+
+
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
-
-
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # STATIC_URL = "/static/"
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 # MEDIA_URL = "/media/"
 
 STATICFILES_STORAGE = STATICFILES_STORAGE
@@ -243,12 +245,12 @@ s3 = boto3.client(
     endpoint_url='https://movieitebucket.fra1.digitaloceanspaces.com'
 )
 
-# Ma'lumotlar bazasiga mahsulot rasm fayllarini saqlash uchun funksiya
-def save_product_image(file_name, file_content):
-    """Ma'lumotlar bazasiga mahsulot rasm faylini saqlash"""
-    s3.put_object(Bucket='movieitebucket', Key=file_name, Body=file_content)
+# # Ma'lumotlar bazasiga mahsulot rasm fayllarini saqlash uchun funksiya
+# def save_product_image(file_name, file_content):
+#     """Ma'lumotlar bazasiga mahsulot rasm faylini saqlash"""
+#     s3.put_object(Bucket='movieitebucket', Key=file_name, Body=file_content)
 
-# Mahsulotlar rasm faylini olish uchun funksiya
-def get_product_image_url(file_name):
-    """Mahsulotlar rasm faylini olish"""
-    return f"https://movieitebucket.fra1.digitaloceanspaces.com/{file_name}"
+# # Mahsulotlar rasm faylini olish uchun funksiya
+# def get_product_image_url(file_name):
+#     """Mahsulotlar rasm faylini olish"""
+#     return f"https://movieitebucket.fra1.digitaloceanspaces.com/{file_name}"
