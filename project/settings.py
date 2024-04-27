@@ -3,6 +3,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 from dotenv import load_dotenv
+import boto3
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -145,18 +146,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
-#STATICFILES_DIR = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 
-AWS_LOCATION_STATIC = 'static'
-AWS_LOCATION_MEDIA = 'media'
 
 
 # MEDIAFILES_DIRS = [
@@ -229,3 +226,27 @@ CORS_ALLOWED_ORIGINS = [
     
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_S3_REGION_NAME,
+)
+
+# Sizning fayl o'rnatingiz va URLsini generatsiya qiling
+def generate_presigned_url(bucket_name, object_name):
+    """Amazon S3 da fayl uchun imzolangan URL generatsiya qilish"""
+    url = s3.generate_presigned_url(
+        ClientMethod='get_object',
+        Params={'Bucket': bucket_name, 'Key': object_name},
+        ExpiresIn=3600,  # Fayl URL ning amal qilish muddati (sekundlar)
+    )
+    return url
+
+# Mahsulotlar obyektining fayl yo'lining va Amazon S3 da yuklanadigan URL ni generatsiya qilish
+def get_product_image_url(product_id):
+    """Mahsulotning rasm fayli uchun Amazon S3 da imzolangan URL generatsiya qilish"""
+    object_name = f"photos/products/{product_id}.jpg"  # Fayl yo'lining
+    url = generate_presigned_url(AWS_STORAGE_BUCKET_NAME, object_name)  # URL ni generatsiya qilish
+    return url
