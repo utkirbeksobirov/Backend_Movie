@@ -99,11 +99,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':' db',
-        'USER':'db',
-        'PASSWORD':'AVNS_YyDAkw6VRTVVF01liTf',
-        'HOST':'app-c3d027e9-1e02-40d9-b408-ce4d3db07377-do-user-15829099-0.c.db.ondigitalocean.com',
-        'PORT':'25060',
+        'NAME': os.getenv("DATABASE_NAME"), 
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT"),
         'sslmode' :'require',
    }
 }
