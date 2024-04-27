@@ -96,19 +96,17 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-if DEBUG is True:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-elif len(sys.argv) > 0 and sys.argv[1] != "collectstatic":
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+DATABASES = {
+    'default':{
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME':' db',
+        'USER':'db',
+        'PASSWORD':'AVNS_YyDAkw6VRTVVF01liTf',
+        'HOST':'app-c3d027e9-1e02-40d9-b408-ce4d3db07377-do-user-15829099-0.c.db.ondigitalocean.com',
+        'PORT':'25060',
+        'sslmode' :'require',
+   }
+}
 
 
 
