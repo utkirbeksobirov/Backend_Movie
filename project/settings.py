@@ -147,20 +147,8 @@ USE_TZ = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
-
-
-
-
-# MEDIAFILES_DIRS = [
-#     os.path.join(BASE_DIR, "media"),
-# ]
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_ENABLED = True
-AWS_S3_SECURE_URLS = True
-
+STATICFILES_STORAGE = STATICFILES_STORAGE
+DEFAULT_FILE_STORAGE = DEFAULT_FILE_STORAGE
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 3000
 FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 3000
@@ -170,28 +158,24 @@ AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_SIGNATURE_NAME = os.getenv("AWS_S3_SIGNATURE_NAME")
 AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
-AWS_S3_FILE_OVERWRITE = os.getenv("AWS_S3_FILE_OVERWRITE")
-AWS_DEFAULT_ACL = os.getenv("AWS_DEFAULT_ACL")
-AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
-AWS_S3_CUSTOM_DOMAIN = "%s.s3.ap-southeast-1.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
-AWS_S3_VERIFY = os.getenv("AWS_S3_VERIFY")
+AWS_ENABLED = True
+AWS_S3_SECURE_URLS = True
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",
 }
-AWS_QUERYSTRING_EXPIRE = os.getenv("AWS_QUERYSTRING_EXPIRE")
-
+AWS_QUERYSTRING_EXPIRE = 3600
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = 'https://%s.s3.ap-southeast-1.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
-# STATIC_URL = "/static/"
+STATIC_URL = "/static/"
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = 'https://%s.s3.ap-southeast-1.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-# MEDIA_URL = "/media/"
+MEDIA_URL = "/media/"
 
-STATICFILES_STORAGE = STATICFILES_STORAGE
-DEFAULT_FILE_STORAGE = DEFAULT_FILE_STORAGE
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -234,19 +218,4 @@ CORS_ALLOWED_ORIGINS = [
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-s3 = boto3.client(
-    "s3",
-    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
-    endpoint_url='https://movieitebucket.fra1.digitaloceanspaces.com'
-)
 
-# # Ma'lumotlar bazasiga mahsulot rasm fayllarini saqlash uchun funksiya
-# def save_product_image(file_name, file_content):
-#     """Ma'lumotlar bazasiga mahsulot rasm faylini saqlash"""
-#     s3.put_object(Bucket='movieitebucket', Key=file_name, Body=file_content)
-
-# # Mahsulotlar rasm faylini olish uchun funksiya
-# def get_product_image_url(file_name):
-#     """Mahsulotlar rasm faylini olish"""
-#     return f"https://movieitebucket.fra1.digitaloceanspaces.com/{file_name}"
