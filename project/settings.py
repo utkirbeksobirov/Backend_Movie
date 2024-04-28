@@ -147,11 +147,7 @@ USE_TZ = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
 
 
 
@@ -176,15 +172,24 @@ AWS_S3_SIGNATURE_NAME = os.getenv("AWS_S3_SIGNATURE_NAME")
 AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
 AWS_S3_FILE_OVERWRITE = os.getenv("AWS_S3_FILE_OVERWRITE")
 AWS_DEFAULT_ACL = os.getenv("AWS_DEFAULT_ACL")
+AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
+AWS_LOCATION = "moviedigital"
 AWS_S3_VERIFY = os.getenv("AWS_S3_VERIFY")
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",
 }
 AWS_QUERYSTRING_EXPIRE = os.getenv("AWS_QUERYSTRING_EXPIRE")
 
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = "https://%s/%s/" % {AWS_S3_ENDPOINT_URL, AWS_LOCATION}
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
 STATICFILES_STORAGE = STATICFILES_STORAGE
 DEFAULT_FILE_STORAGE = DEFAULT_FILE_STORAGE
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
