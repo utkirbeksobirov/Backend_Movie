@@ -1,2 +1,2 @@
-DEFAULT_FILE_STORAGE = "core.cdn.backends.MediaRootS3Boto3Storages"
-STATICFILES_STORAGE = "core.cdn.backends.StaticRootS3Boto3Storages"
+DEFAULT_FILE_STORAGE = "project.cdn.backends.MediaRootS3Boto3Storages"
+STATICFILES_STORAGE = "project.cdn.backends.StaticRootS3Boto3Storages"

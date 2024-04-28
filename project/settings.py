@@ -72,6 +72,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'project.urls'
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES = [
     {
