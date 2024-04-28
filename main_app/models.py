@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from storages.fields import StorageFileField
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -18,8 +19,8 @@ class Film(models.Model):
     description = models.TextField(max_length=500)
     language = models.CharField(max_length=255)
     category = models.ManyToManyField(Category)
-    img = models.FileField(upload_to='photos', blank=True)
-    file = models.FileField(upload_to='videos', blank=True)
+    img = StorageFileField(upload_to='photos/')
+    file = StorageFileField(upload_to='videos/')
     actors = models.ManyToManyField(Actor)
     data = models.DateField()
 
