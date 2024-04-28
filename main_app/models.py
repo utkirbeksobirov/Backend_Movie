@@ -10,10 +10,11 @@ class Category(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    photo = models.ImageField(upload_to='photos/actors')
+    photo = StorageFileField(upload_to='photos/actors/')
 
     def __str__(self):
         return self.name
+    
 class Film(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(max_length=500)
