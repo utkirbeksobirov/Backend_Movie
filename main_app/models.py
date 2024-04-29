@@ -21,6 +21,7 @@ class Film(models.Model):
     language = models.CharField(max_length=255)
     category = models.ManyToManyField(Category)
     img = models.FileField(upload_to='photos/', blank=True)
+    background_img = models.FileField(upload_to='background/', blank=True)
     file = models.FileField(upload_to='videos/', blank=True)
     actors = models.ManyToManyField(Actor)
     data = models.DateField()
