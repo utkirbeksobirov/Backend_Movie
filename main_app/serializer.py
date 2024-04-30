@@ -21,7 +21,7 @@ class FilmSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Film
-        fields = ['id', 'name', 'description', 'language', 'category', 'img', 'file', 'actors', 'data']
+        fields = ['id', 'name', 'description', 'language', 'category', 'img', 'background_img' 'file', 'actors', 'data']
 
 
 class UserSerializer(serializers.ModelSerializer):
