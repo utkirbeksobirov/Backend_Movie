@@ -17,7 +17,7 @@ load_dotenv()
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 WEBSITE_URL = os.environ.get('WEBSITE_URL')
@@ -172,8 +172,8 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_QUERYSTRING_EXPIRE = 3600
 
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = "/static/"
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
