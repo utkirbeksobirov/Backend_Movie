@@ -172,7 +172,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_QUERYSTRING_EXPIRE = 3600
 
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
